@@ -34,6 +34,11 @@ ifneq (,$(findstring android,$(CC)))
 	LIBS := $(filter-out -lpthread,$(LIBS)) -llog
 endif
 
+# Add bitcode for iOS:
+ifneq (,$(findstring ios,$(CC)))
+	CFLAGS += -fembed-bitcode
+endif
+
 # Source files:
 abc_sources = \
 	$(wildcard src/*.cpp) \
